@@ -1,0 +1,9 @@
+.Exchange {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.PocketView {
+    flex: 1;
+}

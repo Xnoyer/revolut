@@ -1,0 +1,16 @@
+.ExchangeControls {
+    display: flex;
+    flex-direction: row;
+    height: 0;
+    position: relative;
+    top: -12px;
+}
+
+.switch-button {
+    margin-left: 48px;
+    padding: 0 8px;
+    height: 24px;
+    border-radius: 12px;
+    border: 1px solid black;
+    background-color: azure;
+}
