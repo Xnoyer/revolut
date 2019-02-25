@@ -1,6 +1,27 @@
 .PocketView {
     display: flex;
-    border: 1px solid black;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.topRow {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.CurrencyCarousel {
+    flex: 1;
+}
+
+.CurrencyInput {
+    flex: 1;
+}
+
+.balance {
+    align-self: flex-start;
+    margin: 48px;
 }

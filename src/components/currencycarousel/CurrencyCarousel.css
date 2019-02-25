@@ -1,0 +1,18 @@
+.CurrencyCarousel {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    margin: 0 24px;
+}
+
+.currency {
+    flex: 1;
+    font-size: 15vw;
+}
+
+.arrow {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 18px;
+}
