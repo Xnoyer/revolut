@@ -9,18 +9,24 @@ class CurrencyCarousel extends Component {
         this.onRightButtonClick = this.onRightButtonClick.bind(this);
     }
 
+    componentDidUpdate(prevProps) {
+        if (this.props.currencyIndex !== prevProps.currencyIndex) {
+            this.setState({currencyIndex: this.props.currencyIndex});
+        }
+    }
+
     onLeftButtonClick() {
         const newIndex = this.state.currencyIndex > 0 ? this.state.currencyIndex - 1 : this.props.currencies.length - 1;
-        if (this.props.currencyChanged) {
-            this.props.currencyChanged(newIndex);
+        if (this.props.onCurrencyChanged) {
+            this.props.onCurrencyChanged(newIndex);
         }
         this.setState({currencyIndex: newIndex});
     }
 
     onRightButtonClick() {
         const newIndex = this.state.currencyIndex < this.props.currencies.length - 1 ? this.state.currencyIndex + 1 : 0;
-        if (this.props.currencyChanged) {
-            this.props.currencyChanged(newIndex);
+        if (this.props.onCurrencyChanged) {
+            this.props.onCurrencyChanged(newIndex);
         }
         this.setState({currencyIndex: newIndex});
     }

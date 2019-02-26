@@ -7,7 +7,8 @@
 
 .currency {
     flex: 1;
-    font-size: 15vw;
+    font-size: 10vw;
+    width: 20vw;
 }
 
 .arrow {
