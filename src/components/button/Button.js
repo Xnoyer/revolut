@@ -9,14 +9,15 @@ class Button extends Component {
     }
 
     onClick() {
-        if (this.props.onClick) {
+        // Do not fire event if button disabled.
+        if (this.props.onClick && !this.props.disabled) {
             this.props.onClick();
         }
     }
 
     render() {
         return (
-            <div className="Button" onClick={this.onClick}>
+            <div className={'Button' + (this.props.disabled ? ' disabled' : '')} onClick={this.onClick}>
                 {this.props.text}
             </div>
         );

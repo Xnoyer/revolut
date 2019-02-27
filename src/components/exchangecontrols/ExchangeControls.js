@@ -9,6 +9,8 @@ class ExchangeControls extends Component {
         this.state = {conversionString: ExchangeControls.calcConversionString(props)};
     }
 
+    // Method which computes string with current currencies rate.
+    // Format '1 <from_currency> = X <to_currency>
     static calcConversionString(props) {
         const fromCurrencyName = props.currencies[props.fromIndex];
         const toCurrencyName = props.currencies[props.toIndex];
@@ -17,6 +19,7 @@ class ExchangeControls extends Component {
     }
 
     componentDidUpdate(prevProps) {
+        // React on props update, recalc conversion string.
         if (this.props.fromIndex !== prevProps.fromIndex || this.props.toIndex !== prevProps.toIndex) {
             this.setState({conversionString: ExchangeControls.calcConversionString(this.props)});
         }

@@ -11,6 +11,7 @@ class App extends Component {
         );
     }
 
+    // Listens for onExchange call from Exchange component. Moves certain amounts of "money" from pocket to pocket.
     onExchange(fromPocket, toPocket, value) {
         if (fromPocket === toPocket) {
             return;
@@ -30,7 +31,9 @@ class App extends Component {
     constructor() {
         super();
         this.OPENEXCHANGERATES_ID = '16fed18503864b3ea1af861481eedac9';
+        this.UPDATE_INTERVAL = 60000; // TODO: set this interval to 10s.
         this.state = {
+            // Dummy pockets.
             pockets: {
                 'RUB': {
                     amount: 5000,
@@ -45,26 +48,19 @@ class App extends Component {
                     amount: 700,
                 }
             },
+            // Dummy rates.
             rates: {
                 'RUB': {
-                    'USD': 0.0153,
-                    'EUR': 0.0134,
-                    'PLN': 0.0583,
+                    'USD': 0, 'EUR': 0, 'PLN': 0,
                 },
                 'USD': {
-                    'RUB': 65.5178,
-                    'EUR': 0.8801,
-                    'PLN': 3.8180,
+                    'RUB': 0, 'EUR': 0, 'PLN': 0,
                 },
                 'EUR': {
-                    'USD': 1.1362,
-                    'RUB': 74.4390,
-                    'PLN': 4.3380,
+                    'USD': 0, 'RUB': 0, 'PLN': 0,
                 },
                 'PLN': {
-                    'USD': 0.2619,
-                    'EUR': 0.2305,
-                    'RUB': 17.1616,
+                    'USD': 0, 'EUR': 0, 'RUB': 0,
                 },
             }
         };
@@ -72,8 +68,10 @@ class App extends Component {
     }
 
     componentDidMount() {
+        // Fetching currencies on first open.
         this.fetchCurrencies();
-        this.interval = setInterval(this.fetchCurrencies.bind(this), 60000);
+        // And to it every this.UPDATE_INTERVAL milliseconds.
+        this.interval = setInterval(this.fetchCurrencies.bind(this), this.UPDATE_INTERVAL);
     }
 
     componentWillUnmount() {
@@ -84,6 +82,8 @@ class App extends Component {
         fetch('https://openexchangerates.org/api/latest.json?app_id=' + this.OPENEXCHANGERATES_ID + '&symbols=PLN,RUB,EUR')
             .then(response => response.json())
             .then(data => {
+                // That's unfortunate. This service provides API with setting base currency only for paid account.
+                // So I'll calculate all currency rates based on USD rates, sorry.
                 const newRates = {
                     'USD': {
                         'EUR': data.rates.EUR,

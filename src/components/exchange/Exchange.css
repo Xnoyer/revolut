@@ -1,4 +1,5 @@
 .Exchange {
+    background-color: rgba(0, 0, 255, .2);
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -9,5 +10,6 @@
 }
 
 .PocketView:first-of-type {
+    background-color: rgba(0, 0, 255, .1);
     border-bottom: 1px solid rgba(0, 0, 0, .54);
 }
