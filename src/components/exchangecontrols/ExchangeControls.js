@@ -14,7 +14,8 @@ class ExchangeControls extends Component {
     static calcConversionString(props) {
         const fromCurrencyName = props.currencies[props.fromIndex];
         const toCurrencyName = props.currencies[props.toIndex];
-        const rate = fromCurrencyName !== toCurrencyName ? props.rates[fromCurrencyName][toCurrencyName].toFixed(4) : 1;
+        const rate = fromCurrencyName !== toCurrencyName ?
+            props.rates[fromCurrencyName][toCurrencyName].toFixed(4).replace(/0*$/g, '').replace(/\.$/g, '') : 1;
         return `1 ${fromCurrencyName} = ${rate} ${toCurrencyName}`;
     }
 
