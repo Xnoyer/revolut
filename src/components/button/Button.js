@@ -10,7 +10,7 @@ class Button extends Component {
 
     onClick() {
         // Do not fire event if button disabled.
-        if (this.props.onClick && !this.props.disabled) {
+        if (!this.props.disabled && this.props.onClick) {
             this.props.onClick();
         }
     }

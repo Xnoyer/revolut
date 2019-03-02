@@ -3,14 +3,6 @@ import './App.css';
 import Exchange from "./components/exchange/Exchange";
 
 class App extends Component {
-    render() {
-        return (
-            <div className="App">
-                <Exchange pockets={this.state.pockets} rates={this.state.rates} onExchange={this.onExchange}/>
-            </div>
-        );
-    }
-
     // Listens for onExchange call from Exchange component. Moves certain amounts of "money" from pocket to pocket.
     onExchange(fromPocket, toPocket, value) {
         if (fromPocket === toPocket) {
@@ -31,7 +23,7 @@ class App extends Component {
     constructor() {
         super();
         this.OPENEXCHANGERATES_ID = '16fed18503864b3ea1af861481eedac9';
-        this.UPDATE_INTERVAL = 60000; // TODO: set this interval to 10s.
+        this.UPDATE_INTERVAL = 10000;
         this.state = {
             // Dummy pockets.
             pockets: {
@@ -49,6 +41,7 @@ class App extends Component {
                 }
             },
             // Dummy rates.
+            // Should be generated accodring to the pockets, but pockets are fixed.
             rates: {
                 'RUB': {
                     'USD': 0, 'EUR': 0, 'PLN': 0,
@@ -108,6 +101,14 @@ class App extends Component {
                 };
                 this.setState({rates: newRates});
             });
+    }
+
+    render() {
+        return (
+            <div className="App">
+                <Exchange pockets={this.state.pockets} rates={this.state.rates} onExchange={this.onExchange}/>
+            </div>
+        );
     }
 }
 

@@ -29,8 +29,7 @@ class PocketView extends Component {
                     <CurrencyCarousel currencies={this.props.currencies}
                                       currencyIndex={this.props.pocketIndex}
                                       onCurrencyChanged={this.onCurrencyChanged}/>
-                    <CurrencyInput onValueChanged={this.onValueChanged}
-                                   value={this.props.value}/>
+                    <CurrencyInput onValueChanged={this.onValueChanged} value={this.props.value}/>
                 </div>
                 <div className="balance">Balance: {this.props.balance.toFixed(2)}</div>
             </div>

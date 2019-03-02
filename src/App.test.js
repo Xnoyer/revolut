@@ -1,6 +1,5 @@
 import React from 'react';
 import Enzyme from 'enzyme';
-import sinon from 'sinon'
 import Adapter from 'enzyme-adapter-react-16';
 import App from './App';
 import Exchange from "./components/exchange/Exchange";
